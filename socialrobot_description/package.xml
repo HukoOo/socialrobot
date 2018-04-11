@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<package>
+  <name>socialrobot_description</name>
+  <version>0.0.0</version>
+  <description>The socialrobot_description package</description>
+  <maintainer email="nicky707@hanmail.net">Jeongmin Jeon</maintainer>
+  <license>TODO</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>urdf</build_depend>
+  <build_depend>xacro</build_depend>
+  <run_depend>urdf</run_depend>
+  <run_depend>xacro</run_depend>
+</package>

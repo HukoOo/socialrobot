@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<root name="6dof_RISE" xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <xacro:macro name="default_material">
+    <mu1>100000</mu1>
+    <mu2>100000</mu2>
+     <kp>100000000.0</kp>
+     <kd>1.0</kd>
+  </xacro:macro>
+
+  
+  <!-- MACRO FOR THE ROBOT ARM -->
+  <xacro:macro name="RISE_6dof" params="parent mass_divider *origin">  
+  	<joint name="6dof_RISE_base_footprint_joint" type="fixed">
+	    <xacro:insert_block name="origin" />
+	    <parent link="${parent}" />
+	    <child link="6dof_RISE_base_footprint" />
+    </joint>
+
+  <link name="6dof_RISE_base_footprint"/>
+
+  <joint name="6dof_RISE_base_joint" type="fixed">
+    <parent link="6dof_RISE_base_footprint"/>
+    <child link="6dof_RISE_base_link"/>
+    <origin xyz="0.0 0.0 0.062" rpy="-${M_PI_2} -${M_PI_2} 0"/>
+  </joint>
+   
+  <link name="6dof_RISE_base_link">
+  	<inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="1"/>
+      <inertia ixx="0.01" ixy="0.0" ixz="0.0"
+               iyy="0.01" iyz="0.0"
+               izz="0.01" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0.0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://socialrobot_description/meshes/6dof_RISE/6dof_1.stl" scale="1 1 1"/>
+      </geometry>
+      <material name="light_black"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0.0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://socialrobot_description/meshes/collision/6dof_RISE/6dof_1.stl" scale="1 1 1"/>
+      </geometry>
+    </collision>    
+  </link>
+
+    <joint name="6dof_RISE_joint_1" type="revolute">
+    	<limit lower="-${M_PI_2}" upper="${M_PI}" effort="2.6" velocity="1.0" /> 
+    <origin xyz="0.034 0 -0.033" rpy="0 ${M_PI_2} 0" />
+        <parent link="6dof_RISE_base_link" />
+        <child link="6dof_RISE_link_2" />
+        <axis xyz="0 0 1"/>
+  </joint>
+  
+  <link name="6dof_RISE_link_2">
+  	<inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="1"/>
+      <inertia ixx="0.01" ixy="0.0" ixz="0.0"
+               iyy="0.01" iyz="0.0"
+               izz="0.01" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0.0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://socialrobot_description/meshes/6dof_RISE/6dof_2.stl" scale="1 1 1"/>
+      </geometry>
+      <material name="white"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0.0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://socialrobot_description/meshes/collision/6dof_RISE/6dof_2.stl" scale="1 1 1"/>
+      </geometry>
+    </collision>    
+  </link>
+
+  <joint name="6dof_RISE_joint_2" type="revolute">
+    	<limit lower="-${M_PI_2}" upper="${M_PI}" effort="2.6" velocity="1.0" /> 
+    <origin xyz="0.0051023 0 0.1655" rpy="${M_PI_2} 0 0" />
+        <parent link="6dof_RISE_link_2" />
+        <child link="6dof_RISE_link_3" />
+        <axis xyz="0 0 1"/>
+  </joint>
+
+<link name="6dof_RISE_link_3">
+  	<inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="1"/>
+      <inertia ixx="0.01" ixy="0.0" ixz="0.0"
+               iyy="0.01" iyz="0.0"
+               izz="0.01" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0.0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://socialrobot_description/meshes/6dof_RISE/6dof_3.stl" scale="1 1 1"/>
+      </geometry>
+      <material name="light_black"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0.0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://socialrobot_description/meshes/collision/6dof_RISE/6dof_3.stl" scale="1 1 1"/>
+      </geometry>
+    </collision>    
+  </link>
+
+  <joint name="6dof_RISE_joint_3" type="revolute">
+    <limit lower="-${120/180*M_PI}" upper="${240/180*M_PI}" effort="2.6" velocity="1.0" /> 
+    <origin xyz="0 0.11227 0" rpy="-${M_PI_2} 0 0" />
+    <parent link="6dof_RISE_link_3" />
+    <child link="6dof_RISE_link_4" />
+    <axis xyz="0 0 1"/>
+  </joint>
+
+	<link name="6dof_RISE_link_4">
+		<inertial>
+			<origin xyz="0 0 0" rpy="0 0 0"/>
+			<mass value="1"/>
+			<inertia ixx="0.01" ixy="0.0" ixz="0.0"
+			iyy="0.01" iyz="0.0"
+			izz="0.01" />
+		</inertial>
+		<visual>
+			<origin xyz="0 0 0.0" rpy="0 0 0"/>
+			<geometry>
+				<mesh filename="package://socialrobot_description/meshes/6dof_RISE/6dof_4.stl" scale="1 1 1"/>
+			</geometry>
+			<material name="white"/>
+		</visual>
+		<collision>
+		<origin xyz="0 0 0.0" rpy="0 0 0"/>
+		<geometry>
+			<mesh filename="package://socialrobot_description/meshes/collision/6dof_RISE/6dof_4.stl" scale="1 1 1"/>
+		</geometry>
+		</collision>    
+	</link>
+
+  <joint name="6dof_RISE_joint_4" type="revolute">
+    <limit lower="-${120/180*M_PI}" upper="${240/180*M_PI}" effort="2.6" velocity="1.0" /> 
+    <origin xyz="0 0 0.26343" rpy="${M_PI_2} 0 0" />
+    <parent link="6dof_RISE_link_4" />
+    <child link="6dof_RISE_link_5" />
+    <axis xyz="0 0 1"/>
+  </joint>
+
+  <link name="6dof_RISE_link_5">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="1"/>
+      <inertia ixx="0.01" ixy="0.0" ixz="0.0"
+      iyy="0.01" iyz="0.0"
+      izz="0.01" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0.0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://socialrobot_description/meshes/6dof_RISE/6dof_5.stl" scale="1 1 1"/>
+      </geometry>
+      <material name="white"/>
+    </visual>
+    <collision>
+    <origin xyz="0 0 0.0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://socialrobot_description/meshes/collision/6dof_RISE/6dof_5.stl" scale="1 1 1"/>
+    </geometry>
+    </collision>    
+  </link>
+
+  <joint name="6dof_RISE_joint_5" type="revolute">
+    <limit lower="-${120/180*M_PI}" upper="${240/180*M_PI}" effort="2.6" velocity="1.0" /> 
+    <origin xyz="0 0.13911 0" rpy="-${M_PI_2} 0 0" />
+    <parent link="6dof_RISE_link_5" />
+    <child link="6dof_RISE_link_6" />
+    <axis xyz="0 0 1"/>
+  </joint>
+
+  <link name="6dof_RISE_link_6">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="1"/>
+      <inertia ixx="0.01" ixy="0.0" ixz="0.0"
+      iyy="0.01" iyz="0.0"
+      izz="0.01" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0.0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://socialrobot_description/meshes/6dof_RISE/6dof_6.stl" scale="1 1 1"/>
+      </geometry>
+      <material name="white"/>
+    </visual>
+    <collision>
+    <origin xyz="0 0 0.0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://socialrobot_description/meshes/collision/6dof_RISE/6dof_6.stl" scale="1 1 1"/>
+    </geometry>
+    </collision>    
+  </link>
+
+   <joint name="6dof_RISE_joint_6" type="revolute">
+    <limit lower="-${120/180*M_PI}" upper="${240/180*M_PI}" effort="2.6" velocity="1.0" /> 
+    <origin xyz="0 0 0.24709" rpy="${M_PI_2} 0 0" />
+    <parent link="6dof_RISE_link_6" />
+    <child link="6dof_RISE_link_7" />
+    <axis xyz="0 0 1"/>
+  </joint>
+
+  <link name="6dof_RISE_link_7">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="1"/>
+      <inertia ixx="0.01" ixy="0.0" ixz="0.0"
+      iyy="0.01" iyz="0.0"
+      izz="0.01" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0.0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://socialrobot_description/meshes/6dof_RISE/6dof_7.stl" scale="1 1 1"/>
+      </geometry>
+      <material name="light_black"/>
+    </visual>
+    <collision>
+    <origin xyz="0 0 0.0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://socialrobot_description/meshes/collision/6dof_RISE/6dof_7.stl" scale="1 1 1"/>
+    </geometry>
+    </collision>    
+  </link> 
+
+  <joint name="6dof_RISE_wrist_joint" type="fixed">
+    <parent link="6dof_RISE_link_7"/>
+    <child link="6dof_RISE_wrist_link"/>
+    <origin xyz="0.00073845 0.057576 0.0047840" rpy="-${M_PI_2} 0 0"/>
+  </joint>
+
+   <link name="6dof_RISE_wrist_link"/>
+
+  </xacro:macro>
+</root>

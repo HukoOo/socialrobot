@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+
+<robot name="socialrobot" xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:include filename="$(find socialrobot_description)/urdf/common_properties.xacro"/>
+
+  <link name="base_link">
+  </link>
+
+  <!-- body -->  
+  <xacro:include filename="$(find socialrobot_description)/urdf/base.urdf.xacro" />
+  <xacro:base parent="base_link" mass_divider="1">
+     <origin xyz="0 0 0.15" rpy="0 -${M_PI_2} 0" />
+  </xacro:base>
+
+  <!-- kinect v2 -->
+  <xacro:include filename="$(find socialrobot_description)/urdf/kinect_v2.urdf.xacro" />
+  <xacro:kinect parent="body_frame" mass_divider="1">
+     <origin xyz="1.025 0 -0.05" rpy="0 ${M_PI_2} 0" />
+  </xacro:kinect>
+  
+  <!-- 6dof RISE manipulator -->
+  <xacro:include filename="$(find socialrobot_description)/urdf/6dof_RISE.urdf.xacro" />
+  <xacro:RISE_6dof parent="body_frame" mass_divider="1">
+     <origin xyz="0.8885 -0.14203 -0.0019477" rpy="${M_PI_2} ${M_PI} 0" />
+  </xacro:RISE_6dof>
+
+  <!-- 7dof RISE manipulator -->
+  
+  <xacro:include filename="$(find socialrobot_description)/urdf/7dof_RISE.urdf.xacro" />
+  <xacro:RISE_7dof parent="body_frame" mass_divider="1">
+     <origin xyz="0.88683 0.20797 -0.10595" rpy="0 ${M_PI} -${M_PI_2}" />
+  </xacro:RISE_7dof>
+  
+  <!-- barrett hand -->
+  <xacro:include filename="$(find socialrobot_description)/urdf/bhand_model.urdf.xacro" />
+  <xacro:bhand parent="6dof_RISE_wrist_link" mass_divider="1" prefix="left">
+     <origin xyz="0 0 0" rpy="0 0 ${M_PI}" />
+  </xacro:bhand>
+
+  <xacro:include filename="$(find socialrobot_description)/urdf/bhand_model.urdf.xacro" />
+  <xacro:bhand parent="7dof_RISE_wrist_link" mass_divider="1" prefix="right">
+     <origin xyz="0 0 0" rpy="0 0 0" />
+  </xacro:bhand>
+
+</robot>

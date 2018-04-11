@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<root name="base" xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <!-- MACRO FOR THE KINECT-->
+  <xacro:macro name="base" params="parent mass_divider *origin">  
+    <joint name="base_footprint_joint" type="fixed">
+      <xacro:insert_block name="origin" />
+      <parent link="${parent}" />
+      <child link="body_frame" />
+    </joint>
+
+  <link name="body_frame">
+      <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="1"/>
+      <inertia ixx="0.01" ixy="0.0" ixz="0.0"
+               iyy="0.01" iyz="0.0"
+               izz="0.01" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0.0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://socialrobot_description/meshes/mobile/base.stl" scale="1 1 1"/>
+      </geometry>
+      <material name="white"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0.0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://socialrobot_description/meshes/collision/mobile/base.stl" scale="1 1 1"/>
+      </geometry>
+    </collision>    
+  </link>
+
+
+  </xacro:macro>
+</root>

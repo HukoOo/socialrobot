@@ -1,0 +1,35 @@
+controller_list:
+  - name: fake_left_arm_controller
+    joints:
+      - 7dof_RISE_joint_1
+      - 7dof_RISE_joint_2
+      - 7dof_RISE_joint_3
+      - 7dof_RISE_joint_4
+      - 7dof_RISE_joint_5
+      - 7dof_RISE_joint_6
+      - 7dof_RISE_joint_7
+  - name: fake_right_arm_controller
+    joints:
+      - 6dof_RISE_joint_1
+      - 6dof_RISE_joint_2
+      - 6dof_RISE_joint_3
+      - 6dof_RISE_joint_4
+      - 6dof_RISE_joint_5
+      - 6dof_RISE_joint_6
+  - name: fake_left_gripper_controller
+    joints:
+      - 7dof_RISE_joint_1
+      - 7dof_RISE_joint_2
+      - 7dof_RISE_joint_3
+      - 7dof_RISE_joint_4
+      - 7dof_RISE_joint_5
+      - 7dof_RISE_joint_6
+      - 7dof_RISE_joint_7
+  - name: fake_right_gripper_controller
+    joints:
+      - 6dof_RISE_joint_1
+      - 6dof_RISE_joint_2
+      - 6dof_RISE_joint_3
+      - 6dof_RISE_joint_4
+      - 6dof_RISE_joint_5
+      - 6dof_RISE_joint_6

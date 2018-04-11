@@ -1,0 +1,19 @@
+<!-- -->
+<launch>
+
+	<arg name="rvizconfig" default="$(find socialrobot_description)/rviz/urdf.rviz" />
+
+	<!-- Use urdf.xacro -->
+	<arg name="model" default="$(find socialrobot_description)/urdf/socialrobot.urdf.xacro"/>
+	<param name="robot_description" command="$(find xacro)/xacro.py $(arg model)" />
+	<!-- Use urdf --><!--
+	<arg name="model" default="$(find socialrobot_description)/urdf/socialrobot.urdf"/>
+	<param name="robot_description" textfile="$(arg model)" />-->
+
+	<node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
+		<param name="use_gui" value="true"/>
+	</node> 
+	<node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher" />  	
+	<node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)" required="true" />
+
+</launch>

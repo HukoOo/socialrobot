@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<root name="kinect_v2" xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <!-- MACRO FOR THE KINECT-->
+  <xacro:macro name="kinect" params="parent mass_divider *origin">  
+    <joint name="kinect_v2_base_footprint_joint" type="fixed">
+      <xacro:insert_block name="origin" />
+      <parent link="${parent}" />
+      <child link="kinect_v2_base_link" />
+    </joint>
+
+  <link name="kinect_v2_base_link">
+      <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="1"/>
+      <inertia ixx="0.01" ixy="0.0" ixz="0.0"
+               iyy="0.01" iyz="0.0"
+               izz="0.01" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0.0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://socialrobot_description/meshes/kinect_v2/kienct_v2_base.stl" scale="1 1 1"/>
+      </geometry>
+      <material name="light_black"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0.0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://socialrobot_description/meshes/kinect_v2/kienct_v2_base.stl" scale="1 1 1"/>
+      </geometry>
+    </collision>    
+  </link>
+
+  <joint name="kinect_v2_base_joint" type="fixed">
+    <parent link="kinect_v2_base_link"/>
+    <child link="kinect_v2_body_link"/>
+    <origin xyz="0.0305 0 0.027" rpy="${M_PI_2} -${M_PI_2} 0"/>
+  </joint>
+   
+  <link name="kinect_v2_body_link">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="1"/>
+      <inertia ixx="0.01" ixy="0.0" ixz="0.0"
+               iyy="0.01" iyz="0.0"
+               izz="0.01" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0.0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://socialrobot_description/meshes/kinect_v2/kinect_v2_body.stl" scale="1 1 1"/>
+      </geometry>
+      <material name="light_black"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0.0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://socialrobot_description/meshes/kinect_v2/kinect_v2_body.stl" scale="1 1 1"/>
+      </geometry>
+    </collision>    
+  </link>
+
+  <joint name="kinect_v2_rgb_joint" type="fixed">
+    <parent link="kinect_v2_body_link"/>
+    <child link="kinect_v2_rgb"/>
+    <origin xyz="0.015964 -0.0095790 0.095008" rpy="${M_PI_2*3} 0 -${M_PI_2} "/>
+  </joint>
+   
+  <link name="kinect_v2_rgb"/>
+
+  <joint name="kinect_v2_depth_joint" type="fixed">
+    <parent link="kinect_v2_body_link"/>
+    <child link="kinect_v2_depth"/>
+    <origin xyz="0.015964 -0.0095790 0.095008" rpy="${M_PI_2*3} 0 -${M_PI_2} "/>
+  </joint>
+
+  <link name="kinect_v2_depth"/>
+
+  </xacro:macro>
+</root>

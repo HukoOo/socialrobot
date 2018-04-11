@@ -1,0 +1,10 @@
+moveit_setup_assistant_config:
+  URDF:
+    package: socialrobot_description
+    relative_path: urdf/socialrobot.urdf.xacro
+  SRDF:
+    relative_path: config/socialrobot.srdf
+  CONFIG:
+    author_name: Suhan Park
+    author_email: psh117@snu.ac.kr
+    generated_timestamp: 1522849939
